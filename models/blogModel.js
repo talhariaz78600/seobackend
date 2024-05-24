@@ -25,6 +25,10 @@ let blogSchema = mongoose.Schema({
     imageUrl: {
         type: String,
     },
+    home:{
+        type: Boolean,
+        default: false,
+    },
     comments:[commentSchema],
     data:{
         type: Date,

@@ -3,13 +3,14 @@ const router = express.Router();
 const Blog = require("../../models/blogModel")
 
 router.post("/createBlog", async (req, res) => {
-    const { title, description, imageUrl,category } = req.body;
+    const { title, description, imageUrl,category ,home} = req.body;
     try {
         const data = new Blog({
             title: title,
             description: description,
             imageUrl: imageUrl,
-            category
+            category,
+            home
         })
         await data.save();
         res.status(200).json({ message: "item add successfully", data })
@@ -34,7 +35,7 @@ router.get('/getblogdata/:category', async (req, res) => {
             .skip(skip)
             .limit(pageSize)
 
-            
+
         res.status(200).json({ finddata,skip, stop:finddata.length,message:"data fetch successfully" })
 
 
@@ -73,6 +74,9 @@ router.put("/update/id", async (req, res) => {
         }
         if (description) {
             data.description = description;
+        }
+        if(home){
+            data.home=home;
         }
         await data.save();
         res.status(200).json({ message: "blog successfully updated", data })

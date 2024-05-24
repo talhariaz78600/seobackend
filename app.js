@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 const adminRouter = require('./api/admin/admin');
 const userRouter = require('./api/users/user');
 const authRouter = require('./api/users/auth');
+const blogRouter = require('./api/blog/blog');
 
 
 
@@ -42,6 +43,7 @@ app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
 
 app.use('/api/admin', adminRouter);
+app.use('/api/blog', blogRouter);
 
 app.get('/', async (req, res) => {
   res.json({ message: `server is running at ${PORT}` })
