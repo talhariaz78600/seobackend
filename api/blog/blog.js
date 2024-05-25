@@ -29,14 +29,14 @@ router.get('/getblogdata/:category', async (req, res) => {
 
     let stop;
     try {
-        
+        const welldone=await Blog.find({category:category})
         const finddata = await Blog.find({category:category})
             .sort({ _id: -1 })
             .skip(skip)
             .limit(pageSize)
 
 
-        res.status(200).json({ finddata,skip, stop:finddata.length,message:"data fetch successfully" })
+        res.status(200).json({ finddata,skip, stop:welldone.length,message:"data fetch successfully" })
 
 
     } catch (error) {
