@@ -73,7 +73,7 @@ router.get("/getsingleblog/id", async (req, res) => {
 })
 
 
-router.put("/update/id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
     const { id } = req.params;
     const { title, description,category} = req.body;
     try {
