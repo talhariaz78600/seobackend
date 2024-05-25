@@ -107,7 +107,7 @@ router.delete('/deleteBlog/:id', async (req, res) => {
         if (!data) {
           return res.status(400).json({ message: "Blog not found" })
         }
-        data = await Blog.findByIdandDelete(id)
+        await Blog.findByIdAndDelete(id);
         res.status(200).json({ message: "blog successfully deleted", data })
     } catch (error) {
         res.status(500).json({ message: "Internal server error" })
