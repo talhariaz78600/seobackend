@@ -75,7 +75,7 @@ router.get("/getsingleblog/id", async (req, res) => {
 
 router.put("/update/id", async (req, res) => {
     const { id } = req.params;
-    const { title, description } = req.body;
+    const { title, description,category} = req.body;
     try {
         const data = await Blog.findOne({ _id: id });
         if (!data) {
@@ -89,6 +89,9 @@ router.put("/update/id", async (req, res) => {
         }
         if(home){
             data.home=home;
+        }
+        if(category){
+            data.category=category;
         }
         await data.save();
         res.status(200).json({ message: "blog successfully updated", data })
