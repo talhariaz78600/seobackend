@@ -151,4 +151,18 @@ router.put('/deleteComment/:blogId', async (req, res) => {
         res.status(500).json({ message: "Internal server error",errors:error.message});
     }
 })
+
+router.get('/searchitem', async (req, res) => {
+    const { title } = req.query;
+  
+    try {
+      const finddata = await Blog.find({ title: { $regex: new RegExp(title, 'i') } }); 
+     res.status(404).json({finddata, stop:finddata.length, message: 'item fetch successfully' });
+     
+    } catch (error) {
+      console.error('Error searching for blogs:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
 module.exports = router;
